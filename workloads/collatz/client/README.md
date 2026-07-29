@@ -40,12 +40,12 @@ not here.
 ```
 
 Requires the sibling `protocol_runtime` (execution), the assembled `snapshot/` (read-only), and
-the domain-neutral `transport/` engine — all env-provisioned by `serve.sh`.
+the domain-neutral `protocol_transport/` engine — all env-provisioned by `serve.sh`.
 
 ## What it proves
 
 - One governed **Operation Identity** (`collatz.compute`) is stable while the bound workflow is an
   implementation detail.
-- The transport engine is **domain-neutral** — no workload knowledge in `transport/`.
+- The transport engine is **domain-neutral** — no workload knowledge in `protocol_transport/`.
 - Recursion/unbounded iteration is governed as a **finite, acyclic DAG** with no `loop` primitive
   (see the Collatz screen's "recursion without a loop" note).

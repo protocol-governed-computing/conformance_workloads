@@ -41,4 +41,4 @@ echo "  data     : $PGC_DATA_ROOT"
 echo "  port     : $PGC_HTTP_PORT"
 echo
 
-exec "$UMBRELLA/transport/run_http.sh"
+exec "$UMBRELLA/protocol_transport/run_http.sh"
