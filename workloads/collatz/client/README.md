@@ -15,7 +15,7 @@ HTTP  →  HTTP Adapter  →  Canonical Transport  →  TI_COLLATZ_COMPUTE  → 
   live trace (evidence) and the compiled workflow DAG projection.
 
 Inspection (the Protocol Inspector, `pi`) is **not** part of this surface: it is a *downstream
-consumer* of the assembled snapshot and lives in the separate `protocol_inspector` component.
+consumer* of the assembled snapshot and lives in the separate `snapshot_inspector` component.
 This surface demonstrates **execution**, not inspection.
 
 ## Layout
