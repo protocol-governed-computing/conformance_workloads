@@ -6,7 +6,7 @@
 fqdn: workload::INVARIANT_CT_SURFACE_CLOSED_WORKLOAD_V0
 artifact_kind: INVARIANT
 version: V0
-governed_by: fb.topology::CONSTITUTION_CAPABILITY_TRANSFORMS_V0
+governed_by: fb.capability_transforms::CONSTITUTION_CAPABILITY_TRANSFORMS_V0
 core:
   enforcement_stage:
   - compiler_assertion

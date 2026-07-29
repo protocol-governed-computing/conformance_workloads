@@ -25,7 +25,7 @@ concern, consuming the platform's `capability_side_effects::CS_MUTABLE_JSON_V0` 
 fqdn: workload::CC_STORE_RESULTS_V0
 artifact_kind: CAPABILITY_CONTRACT
 version: v0
-governed_by: fb.topology::CONSTITUTION_CAPABILITY_CONTRACT_V0
+governed_by: fb.capability_contracts::CONSTITUTION_CAPABILITY_CONTRACT_V0
 core:
   summary: Store Collatz results to mutable JSON storage
   inputs:

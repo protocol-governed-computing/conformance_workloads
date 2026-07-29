@@ -24,7 +24,7 @@ Compute Collatz sequences for all numbers in the input list.
 fqdn: workload::CC_COMPUTE_SEQUENCES_V0
 artifact_kind: CAPABILITY_CONTRACT
 version: v0
-governed_by: fb.topology::CONSTITUTION_CAPABILITY_CONTRACT_V0
+governed_by: fb.capability_contracts::CONSTITUTION_CAPABILITY_CONTRACT_V0
 core:
   summary: Compute Collatz sequences for all input numbers
   inputs:

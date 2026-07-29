@@ -24,7 +24,7 @@ Admission gate for the Collatz reference workload. Accepts a non-empty list of p
 fqdn: workload::IN_COLLATZ_INPUT_VALIDATED_V0
 artifact_kind: INTENT
 version: v0
-governed_by: fb.topology::CONSTITUTION_INTENT_V0
+governed_by: fb.intent::CONSTITUTION_INTENT_V0
 core:
   summary: Validate Collatz input — non-empty list of positive integers
   workflow: WF_COLLATZ_CONJECTURE_V0

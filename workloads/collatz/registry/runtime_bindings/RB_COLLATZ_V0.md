@@ -26,7 +26,7 @@ results, and names the storage structure that resolves the path.
 fqdn: workload::RB_COLLATZ_V0
 artifact_kind: RUNTIME_BINDING
 version: v0
-governed_by: fb.topology::CONSTITUTION_RUNTIME_BINDING_V0
+governed_by: fb.runtime_binding::CONSTITUTION_RUNTIME_BINDING_V0
 parameters:
 - module_data_root
 core:

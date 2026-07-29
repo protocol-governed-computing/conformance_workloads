@@ -26,7 +26,7 @@ STRUCTURE only (never hardcoded in a capability or the runtime).
 fqdn: workload::STRUCTURE_COLLATZ_STORAGE_V0
 artifact_kind: STRUCTURE
 version: v0
-governed_by: fb.constitution::CONSTITUTION_STRUCTURE_V0
+governed_by: fb.structure::CONSTITUTION_STRUCTURE_V0
 core:
   summary: Collatz reference-workload storage topology
   description: Maps the COLLATZ_RESULTS entity store to a path under the instance data root.

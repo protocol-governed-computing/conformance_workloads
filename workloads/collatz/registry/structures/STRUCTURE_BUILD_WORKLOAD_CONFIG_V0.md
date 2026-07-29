@@ -3,7 +3,7 @@
 **Artifact Type**: STRUCTURE
 **Version**: V0
 **Status**: CANONICAL
-**Governed By**: fb.constitution::CONSTITUTION_STRUCTURE_V0
+**Governed By**: fb.structure::CONSTITUTION_STRUCTURE_V0
 
 ---
 
@@ -29,7 +29,7 @@ First consumer: `workload::collatz` (Phase 1 — pure compute → verify).
 fqdn: workload::STRUCTURE_BUILD_WORKLOAD_CONFIG_V0
 artifact_kind: STRUCTURE
 version: V0
-governed_by: fb.constitution::CONSTITUTION_STRUCTURE_V0
+governed_by: fb.structure::CONSTITUTION_STRUCTURE_V0
 structure_scope: workload
 core:
   summary: Build-time STRUCTURE manifest (PGC reference-workload domain scope)
@@ -99,7 +99,7 @@ output_configuration:
       subpath: compiled/canonical
   bootstrap_search_roots:
   - layer: GOVERNANCE
-    subpath: declaration/structure/structures
+    subpath: structure/structures
 build_phases:
 - phase: discover
   description: Discover workload artifacts via STRUCTURE

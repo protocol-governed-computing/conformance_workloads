@@ -24,7 +24,7 @@ Compute the full Collatz sequence for each input number. Pure, deterministic, no
 fqdn: workload::CT_PURE_COLLATZ_STEP_V0
 artifact_kind: CAPABILITY_TRANSFORM
 version: v0
-governed_by: fb.topology::CONSTITUTION_CAPABILITY_TRANSFORMS_V0
+governed_by: fb.capability_transforms::CONSTITUTION_CAPABILITY_TRANSFORMS_V0
 core:
   summary: Compute full Collatz sequence for each input number
   description: For each n in numbers, iterates the Collatz rule until reaching 1. Returns mapping of n
