@@ -14,7 +14,7 @@ HTTP  →  HTTP Adapter  →  Canonical Transport  →  TI_COLLATZ_COMPUTE  → 
 - **Collatz Conjecture** (`collatz.compute`) — compute a sequence through the boundary; view the
   live trace (evidence) and the compiled workflow DAG projection.
 
-Inspection (the Protocol Inspector, `pi`) is **not** part of this surface: it is a *downstream
+Inspection (the Snapshot Inspector, `si`) is **not** part of this surface: it is a *downstream
 consumer* of the assembled snapshot and lives in the separate `snapshot_inspector` component.
 This surface demonstrates **execution**, not inspection.
 
