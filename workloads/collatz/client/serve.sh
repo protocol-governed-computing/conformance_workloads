@@ -21,6 +21,9 @@ WORKLOADS="$(cd "$CLIENT/../../.." && pwd)"                # conformance_workloa
 UMBRELLA="$(cd "$WORKLOADS/.." && pwd)"                    # protocol-governed-computing/
 
 export PGC_RUNTIME_ROOT="$UMBRELLA/protocol_runtime"
+# The transport engine knows three handler kinds; both execution and inspection interfaces are
+# provisioned even for a composition that only executes.
+export PGC_INSPECTOR_ROOT="$UMBRELLA/snapshot_inspector"
 export PGC_IMPL_ROOTS="$UMBRELLA/software_governance:$WORKLOADS"   # capability_*.* + workloads.*
 # TI/TE boundary contracts are read from the sealed snapshot (compiled TI_/TE_ kinds).
 export PGC_HTTP_BINDINGS="$CLIENT/bindings/http.json"
