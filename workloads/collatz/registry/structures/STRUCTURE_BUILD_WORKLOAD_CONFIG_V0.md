@@ -31,6 +31,7 @@ artifact_kind: STRUCTURE
 version: V0
 governed_by: fb.structure::CONSTITUTION_STRUCTURE_V0
 structure_scope: workload
+reuse_visibility: internal
 core:
   summary: Build-time STRUCTURE manifest (PGC reference-workload domain scope)
   description: 'Compiles the workload domain''s own artifacts (WF/IN/CC/CT), resolving governance and
