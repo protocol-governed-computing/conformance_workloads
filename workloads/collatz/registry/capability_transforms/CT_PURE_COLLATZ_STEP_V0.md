@@ -27,6 +27,7 @@ version: v0
 governed_by: fb.capability_transforms::CONSTITUTION_CAPABILITY_TRANSFORMS_V0
 core:
   summary: Compute full Collatz sequence for each input number
+  refusal: never
   description: For each n in numbers, iterates the Collatz rule until reaching 1. Returns mapping of n
     → sequence.
   inputs:
