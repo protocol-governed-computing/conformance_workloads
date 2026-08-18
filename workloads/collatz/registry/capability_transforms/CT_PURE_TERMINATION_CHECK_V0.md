@@ -27,6 +27,7 @@ version: v0
 governed_by: fb.capability_transforms::CONSTITUTION_CAPABILITY_TRANSFORMS_V0
 core:
   summary: Verify all Collatz sequences terminate at 1
+  refusal: returns
   description: Inspects last element of each sequence. Returns all_terminate boolean and list of non-terminating
     seeds.
   inputs:
