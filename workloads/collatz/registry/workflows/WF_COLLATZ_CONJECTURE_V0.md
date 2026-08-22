@@ -1,17 +1,5 @@
 # WF_COLLATZ_CONJECTURE_V0
 
-## Header (Mandatory)
-
-- **Artifact Code:** WF_COLLATZ_CONJECTURE_V0
-- **Artifact Kind:** workflow
-- **Governed By:** CONSTITUTION_WORKFLOW_V0
-- **Version:** v0
-- **Status:** draft
-- **Supersedes:** NONE
-- **Dependencies:** IN_COLLATZ_INPUT_VALIDATED_V0, CC_COMPUTE_SEQUENCES_V0, CC_VERIFY_TERMINATION_V0
-
----
-
 ## 1. Intent
 
 Reference workload: compute Collatz sequences and verify the conjecture holds for the input set —

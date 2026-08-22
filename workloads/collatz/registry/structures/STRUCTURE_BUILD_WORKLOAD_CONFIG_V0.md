@@ -118,8 +118,3 @@ build_phases:
   target: compiled/artifacts/
 ```
 
-## Version History
-
-- **V0**: First PGC reference-workload domain build manifest. Self-describing (declares its own
-  layer + namespace rule); compiles `workload::` against the imported compiled platform surface;
-  emits only workload artifacts. Platform surface unchanged.

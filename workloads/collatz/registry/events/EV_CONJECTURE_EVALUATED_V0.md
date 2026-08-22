@@ -1,17 +1,5 @@
 # EV_CONJECTURE_EVALUATED_V0
 
-## Header (Mandatory)
-
-- **Artifact Code:** EV_CONJECTURE_EVALUATED_V0
-- **Artifact Kind:** event
-- **Governed By:** CONSTITUTION_EVENT_V0
-- **Version:** v0
-- **Status:** draft
-- **Supersedes:** NONE
-- **Dependencies:** WF_COLLATZ_CONJECTURE_V0
-
----
-
 ## 1. Intent
 
 Domain event emitted once the Collatz conjecture has been evaluated for an input set — records

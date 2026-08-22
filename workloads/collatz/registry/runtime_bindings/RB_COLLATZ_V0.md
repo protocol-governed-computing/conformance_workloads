@@ -1,17 +1,5 @@
 # RB_COLLATZ_V0
 
-## Header (Mandatory)
-
-- **Artifact Code:** RB_COLLATZ_V0
-- **Artifact Kind:** runtime_binding
-- **Governed By:** CONSTITUTION_RUNTIME_BINDING_V0
-- **Version:** v0
-- **Status:** draft
-- **Supersedes:** NONE
-- **Dependencies:** CS_MUTABLE_JSON_V0, STRUCTURE_COLLATZ_STORAGE_V0
-
----
-
 ## 1. Intent
 
 Runtime binding for the Collatz reference workload — binds the platform side effect

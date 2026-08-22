@@ -1,17 +1,5 @@
 # CC_STORE_RESULTS_V0
 
-## Header (Mandatory)
-
-- **Artifact Code:** CC_STORE_RESULTS_V0
-- **Artifact Kind:** capability_contract
-- **Governed By:** CONSTITUTION_CAPABILITY_CONTRACT_V0
-- **Version:** v0
-- **Status:** draft
-- **Supersedes:** NONE
-- **Dependencies:** CS_MUTABLE_JSON_V0
-
----
-
 ## 1. Intent
 
 Persist the Collatz evaluation results to the `COLLATZ_RESULTS` store — the Capability Side Effect

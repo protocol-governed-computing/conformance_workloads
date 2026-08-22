@@ -1,17 +1,5 @@
 # CC_VERIFY_TERMINATION_V0
 
-## Header (Mandatory)
-
-- **Artifact Code:** CC_VERIFY_TERMINATION_V0
-- **Artifact Kind:** capability_contract
-- **Governed By:** CONSTITUTION_CAPABILITY_CONTRACT_V0
-- **Version:** v0
-- **Status:** draft
-- **Supersedes:** NONE
-- **Dependencies:** CT_PURE_TERMINATION_CHECK_V0
-
----
-
 ## 1. Intent
 
 Verify that every computed Collatz sequence terminates at 1. A VIOLATION here is a first-class

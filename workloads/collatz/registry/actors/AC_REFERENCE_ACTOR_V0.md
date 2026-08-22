@@ -1,17 +1,5 @@
 # AC_REFERENCE_ACTOR_V0
 
-## Header (Mandatory)
-
-- **Artifact Code:** AC_REFERENCE_ACTOR_V0
-- **Artifact Kind:** actor
-- **Governed By:** CONSTITUTION_ACTOR_IDENTITY_V0
-- **Version:** v0
-- **Status:** draft
-- **Supersedes:** NONE
-- **Dependencies:** NONE
-
----
-
 ## 1. Intent
 
 Actor context under which the Collatz reference workflow executes. This is the Authority concern at
