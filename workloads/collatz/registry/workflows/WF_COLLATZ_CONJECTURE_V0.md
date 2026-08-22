@@ -44,9 +44,11 @@ IN_COLLATZ_INPUT_VALIDATED_V0
 fqdn: workload::WF_COLLATZ_CONJECTURE_V0
 artifact_kind: WORKFLOW
 version: v0
-governed_by: fb.workflow::CONSTITUTION_WORKFLOW_V0
+governed_by: workflow::CONSTITUTION_WORKFLOW_V0
+authority: pgc.platform
+concern: workload
 subdomain: collatz
-structure: fb.execution::STRUCTURE_RUNTIME_EXECUTION_V0
+structure: execution::STRUCTURE_RUNTIME_EXECUTION_V0
 runtime_binding: workload::RB_COLLATZ_V0
 core:
   summary: Compute, verify, and persist Collatz sequences — domain-blind PGC execution

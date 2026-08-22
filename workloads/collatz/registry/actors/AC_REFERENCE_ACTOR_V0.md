@@ -31,7 +31,9 @@ out of scope here. The reference value is the lifecycle it demonstrates:
 fqdn: workload::AC_REFERENCE_ACTOR_V0
 artifact_kind: ACTOR
 version: v0
-governed_by: fb.actor::CONSTITUTION_ACTOR_IDENTITY_V0
+governed_by: actor::CONSTITUTION_ACTOR_IDENTITY_V0
+authority: pgc.platform
+concern: workload
 core:
   summary: Reference workload actor
   description: System actor context under which the Collatz reference workload executes.

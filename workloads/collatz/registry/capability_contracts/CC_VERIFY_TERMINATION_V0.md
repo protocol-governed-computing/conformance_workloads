@@ -25,7 +25,9 @@ protocol outcome (the conjecture was tested and failed), not an error.
 fqdn: workload::CC_VERIFY_TERMINATION_V0
 artifact_kind: CAPABILITY_CONTRACT
 version: v0
-governed_by: fb.capability_contracts::CONSTITUTION_CAPABILITY_CONTRACT_V0
+governed_by: capability_contracts::CONSTITUTION_CAPABILITY_CONTRACT_V0
+authority: pgc.platform
+concern: workload
 core:
   summary: Verify all Collatz sequences terminate at 1
   inputs:

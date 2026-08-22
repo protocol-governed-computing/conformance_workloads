@@ -21,7 +21,9 @@ added without touching the transport engine.
 fqdn: workload::TI_COLLATZ_COMPUTE_V0
 artifact_kind: TRANSPORT_INGRESS
 version: v0
-governed_by: fb.transport::CONSTITUTION_TRANSPORT_INGRESS_V0
+governed_by: transport::CONSTITUTION_TRANSPORT_INGRESS_V0
+authority: pgc.platform
+concern: workload
 operation: collatz.compute
 
 # Input contract — a declared, named contract (not inline schema logic executed at

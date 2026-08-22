@@ -24,7 +24,9 @@ Verify that every computed Collatz sequence terminates at 1. Pure, deterministic
 fqdn: workload::CT_PURE_TERMINATION_CHECK_V0
 artifact_kind: CAPABILITY_TRANSFORM
 version: v0
-governed_by: fb.capability_transforms::CONSTITUTION_CAPABILITY_TRANSFORMS_V0
+governed_by: capability_transforms::CONSTITUTION_CAPABILITY_TRANSFORMS_V0
+authority: pgc.platform
+concern: workload
 core:
   summary: Verify all Collatz sequences terminate at 1
   refusal: returns
