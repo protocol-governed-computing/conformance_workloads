@@ -1,17 +1,5 @@
 # IN_COLLATZ_INPUT_VALIDATED_V0
 
-## Header (Mandatory)
-
-- **Artifact Code:** IN_COLLATZ_INPUT_VALIDATED_V0
-- **Artifact Kind:** intent
-- **Governed By:** CONSTITUTION_INTENT_V0
-- **Version:** v0
-- **Status:** draft
-- **Supersedes:** NONE
-- **Dependencies:** WF_COLLATZ_CONJECTURE_V0
-
----
-
 ## 1. Intent
 
 Admission gate for the Collatz reference workload. Accepts a non-empty list of positive integers.
@@ -24,7 +12,9 @@ Admission gate for the Collatz reference workload. Accepts a non-empty list of p
 fqdn: workload::IN_COLLATZ_INPUT_VALIDATED_V0
 artifact_kind: INTENT
 version: v0
-governed_by: fb.intent::CONSTITUTION_INTENT_V0
+governed_by: intent::CONSTITUTION_INTENT_V0
+authority: pgc.platform
+concern: workload
 core:
   summary: Validate Collatz input — non-empty list of positive integers
   workflow: WF_COLLATZ_CONJECTURE_V0

@@ -1,17 +1,5 @@
 # CC_COMPUTE_SEQUENCES_V0
 
-## Header (Mandatory)
-
-- **Artifact Code:** CC_COMPUTE_SEQUENCES_V0
-- **Artifact Kind:** capability_contract
-- **Governed By:** CONSTITUTION_CAPABILITY_CONTRACT_V0
-- **Version:** v0
-- **Status:** draft
-- **Supersedes:** NONE
-- **Dependencies:** CT_PURE_COLLATZ_STEP_V0
-
----
-
 ## 1. Intent
 
 Compute Collatz sequences for all numbers in the input list.
@@ -24,7 +12,9 @@ Compute Collatz sequences for all numbers in the input list.
 fqdn: workload::CC_COMPUTE_SEQUENCES_V0
 artifact_kind: CAPABILITY_CONTRACT
 version: v0
-governed_by: fb.capability_contracts::CONSTITUTION_CAPABILITY_CONTRACT_V0
+governed_by: capability_contracts::CONSTITUTION_CAPABILITY_CONTRACT_V0
+authority: pgc.platform
+concern: workload
 core:
   summary: Compute Collatz sequences for all input numbers
   inputs:

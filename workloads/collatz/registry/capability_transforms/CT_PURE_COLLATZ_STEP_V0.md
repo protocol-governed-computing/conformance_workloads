@@ -1,17 +1,5 @@
 # CT_PURE_COLLATZ_STEP_V0
 
-## Header (Mandatory)
-
-- **Artifact Code:** CT_PURE_COLLATZ_STEP_V0
-- **Artifact Kind:** capability_transform
-- **Governed By:** CONSTITUTION_CAPABILITY_TRANSFORMS_V0
-- **Version:** v0
-- **Status:** draft
-- **Supersedes:** NONE
-- **Dependencies:** NONE
-
----
-
 ## 1. Intent
 
 Compute the full Collatz sequence for each input number. Pure, deterministic, no side effects.
@@ -24,7 +12,9 @@ Compute the full Collatz sequence for each input number. Pure, deterministic, no
 fqdn: workload::CT_PURE_COLLATZ_STEP_V0
 artifact_kind: CAPABILITY_TRANSFORM
 version: v0
-governed_by: fb.capability_transforms::CONSTITUTION_CAPABILITY_TRANSFORMS_V0
+governed_by: capability_transforms::CONSTITUTION_CAPABILITY_TRANSFORMS_V0
+authority: pgc.platform
+concern: workload
 core:
   summary: Compute full Collatz sequence for each input number
   refusal: never

@@ -1,17 +1,5 @@
 # STRUCTURE_COLLATZ_STORAGE_V0
 
-## Header (Mandatory)
-
-- **Artifact Code:** STRUCTURE_COLLATZ_STORAGE_V0
-- **Artifact Kind:** structure
-- **Governed By:** CONSTITUTION_STRUCTURE_V0
-- **Version:** v0
-- **Status:** draft
-- **Supersedes:** NONE
-- **Dependencies:** NONE
-
----
-
 ## 1. Intent
 
 Storage topology for the Collatz reference workload — maps the `COLLATZ_RESULTS` entity store to a
@@ -26,7 +14,9 @@ STRUCTURE only (never hardcoded in a capability or the runtime).
 fqdn: workload::STRUCTURE_COLLATZ_STORAGE_V0
 artifact_kind: STRUCTURE
 version: v0
-governed_by: fb.structure::CONSTITUTION_STRUCTURE_V0
+governed_by: structure::CONSTITUTION_STRUCTURE_V0
+authority: pgc.platform
+concern: workload
 core:
   summary: Collatz reference-workload storage topology
   description: Maps the COLLATZ_RESULTS entity store to a path under the instance data root.

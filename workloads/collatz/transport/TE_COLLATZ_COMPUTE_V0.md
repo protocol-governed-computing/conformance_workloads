@@ -16,7 +16,9 @@ Result Class onto a wire representation (`RESPONSE_PROJECTION_EXTERNAL`).
 fqdn: workload::TE_COLLATZ_COMPUTE_V0
 artifact_kind: TRANSPORT_EGRESS
 version: v0
-governed_by: fb.transport::CONSTITUTION_TRANSPORT_EGRESS_V0
+governed_by: transport::CONSTITUTION_TRANSPORT_EGRESS_V0
+authority: pgc.platform
+concern: workload
 operation: collatz.compute
 
 # Result classification: runtime terminal status -> governed Result Class.
