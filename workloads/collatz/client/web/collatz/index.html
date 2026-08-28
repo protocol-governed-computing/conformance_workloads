@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Collatz Conjecture — PGC Platform</title>
+    <link rel="stylesheet" href="/css/base.css">
+    <link rel="stylesheet" href="css/collatz.css">
+</head>
+<body>
+    <header class="app-header">
+        <div class="header-inner">
+            <h1 class="app-title">Collatz Conjecture</h1>
+        </div>
+        <nav class="screen-nav">
+            <a href="/">&larr; Platform Home</a>
+        </nav>
+    </header>
+
+    <div class="container collatz-wide">
+
+        <details class="explainer" open>
+            <summary>What is the Collatz Conjecture?</summary>
+            <div class="explainer-body">
+                <p>Pick any positive integer. Apply one simple rule repeatedly:</p>
+                <div class="rule-box">
+                    <span class="rule-even">If <strong>n</strong> is <em>even</em> &rarr; <strong>n &divide; 2</strong></span>
+                    <span class="rule-sep">&nbsp;&nbsp;&bull;&nbsp;&nbsp;</span>
+                    <span class="rule-odd">If <strong>n</strong> is <em>odd</em> &rarr; <strong>3n + 1</strong></span>
+                </div>
+                <p>
+                    The conjecture states: <strong>every positive integer eventually reaches 1.</strong>
+                    No counterexample has ever been found, and no universal proof exists.
+                </p>
+                <p class="explainer-pgc-note">
+                    In PGC the runtime doesn't know what Collatz means. This page speaks only the
+                    operation identity <code>collatz.compute</code> across the governed transport
+                    boundary &mdash; it never names a workflow. The trace is verifiable evidence of
+                    what was computed.
+                </p>
+            </div>
+        </details>
+
+        <details class="explainer">
+            <summary>FYI &mdash; recursion without a loop</summary>
+            <div class="explainer-body">
+                <p>
+                    Collatz is an inherently <strong>recursive</strong> computation: apply the rule
+                    repeatedly until you reach 1, with no known bound on how many steps that takes.
+                </p>
+                <p class="explainer-pgc-note">
+                    Yet PGC governs it as a <strong>finite, acyclic DAG</strong>
+                    (<code>IN &rarr; compute &rarr; verify &rarr; store &rarr; exit</code>) that the
+                    runtime traverses <strong>without any loop or recursion construct</strong>. The
+                    unbounded iteration is sealed inside a <em>pure capability transform</em>; the
+                    governed control flow itself never loops and never recurses. The platform
+                    therefore supports recursive / unbounded workloads <strong>without</strong> adding
+                    a <code>loop</code> primitive to the protocol &mdash; a non-obvious but
+                    foundational property of pure DAG traversal.
+                </p>
+            </div>
+        </details>
+
+        <form id="collatz-form" onsubmit="event.preventDefault(); submitCollatz();">
+            <div class="form-group">
+                <label for="seed_number">Enter a number (1 &ndash; 999,999)</label>
+                <input type="number" id="seed_number" min="1" max="999999" placeholder="e.g. 27" required>
+            </div>
+
+            <div class="quick-picks">
+                <span class="quick-label">Try:</span>
+                <button type="button" class="pick-btn" onclick="setPick(27)">27</button>
+                <button type="button" class="pick-btn" onclick="setPick(871)">871</button>
+                <button type="button" class="pick-btn" onclick="setPick(6171)">6,171</button>
+                <button type="button" class="pick-btn" onclick="setPick(77031)">77,031</button>
+                <button type="button" class="pick-btn" onclick="setPick(837799)">837,799</button>
+            </div>
+
+            <button type="submit" class="primary-button">Compute Sequence</button>
+        </form>
+
+        <div id="result" class="result-panel"></div>
+
+        <details class="explainer" style="margin-top:24px;">
+            <summary>Examine the compiled workflow (DAG projection)</summary>
+            <div class="explainer-body">
+                <p>
+                    Below is the <strong>compiled</strong> execution graph of
+                    <code>WF_COLLATZ_CONJECTURE_V0</code>, served live from the Reference Platform
+                    Snapshot. Trace the finite, acyclic path the runtime traverses &mdash; a cognitive
+                    exercise in reading a governed workflow as a DAG rather than as code.
+                </p>
+                <img id="wf-projection"
+                     src="/snapshot/behavior_logic/workload/WF_COLLATZ_CONJECTURE_V0/WF_COLLATZ_CONJECTURE_V0.projection.png"
+                     alt="Compiled DAG projection of WF_COLLATZ_CONJECTURE_V0"
+                     style="max-width:100%;border:1px solid #e2e8f0;border-radius:6px;margin-top:4px;"
+                     onerror="this.style.display='none'; document.getElementById('wf-projection-msg').style.display='block';">
+                <p id="wf-projection-msg" style="display:none;color:#991b1b;font-size:13px;">
+                    Compiled projection unavailable &mdash; the snapshot may have been cleaned or
+                    rebuilt. Rebuild the snapshot to regenerate it.
+                </p>
+                <p style="font-size:12px;margin-top:6px;">
+                    <a href="/snapshot/behavior_logic/workload/WF_COLLATZ_CONJECTURE_V0/WF_COLLATZ_CONJECTURE_V0.projection.png"
+                       target="_blank" rel="noopener">Open full size &rarr;</a>
+                </p>
+            </div>
+        </details>
+    </div>
+
+    <footer class="app-footer">
+        operation <code>collatz.compute</code> &rarr; TI &rarr; WF &rarr; TE &mdash; PGC Transport Standard V0
+    </footer>
+
+    <script src="js/collatz_bridge.js"></script>
+</body>
+</html>
