@@ -1,0 +1,21 @@
+# macOS
+.DS_Store
+
+# Python cruft (this repo carries NO python; guard against accidental copies)
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+
+# editor
+.idea/
+.vscode/
+CLAUDE.md
+compiled/
+**/compiled/
+snapshot/
+
+# Construction determination records — evidence about a build, not build output.
+# `3e` §3.2 makes evidence output only; nothing reads these.
+snapshot/determinations/
+**/snapshot/determinations/
