@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "pgc-workloads"
-version = "2.0.0"
+version = "3.0.0"
 description = "PGC conformance workloads — the capability implementations a sealed snapshot binds to make conformance observable"
 readme = "README.md"
 requires-python = ">=3.10"
