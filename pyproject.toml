@@ -43,6 +43,7 @@ Standard = "https://doi.org/10.5281/zenodo.22150616"
 [tool.setuptools.packages.find]
 where = ["."]
 include = ["workloads*"]
-
-[tool.setuptools.package-data]
-"*" = ["*.json"]
+# packages.find defaults to namespaces = true under pyproject, so snapshot/, registry/
+# and test_payloads/ are discovered as packages despite carrying no __init__.py. They
+# are excluded by name to make the paragraph above true of the built wheel.
+exclude = ["workloads.*.snapshot*", "workloads.*.registry*", "workloads.*.test_payloads*"]
