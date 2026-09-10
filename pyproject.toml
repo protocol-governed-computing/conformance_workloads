@@ -1,0 +1,49 @@
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pgc-workloads"
+version = "4.0.0"
+description = "PGC conformance workloads — the capability implementations a sealed snapshot binds to make conformance observable"
+readme = "README.md"
+requires-python = ">=3.10"
+license = "Apache-2.0"
+authors = [{ name = "Bhash Ganti", email = "bachipeachy@gmail.com" }]
+
+keywords = ["protocol-governed-computing", "pgc", "conformance", "workload", "collatz"]
+
+classifiers = [
+  "Development Status :: 4 - Beta",
+  "Intended Audience :: Developers",
+  "Programming Language :: Python :: 3",
+  "Operating System :: OS Independent",
+  "Topic :: Software Development :: Testing",
+]
+
+# The collatz atoms import `runtime.ct_executor` for CTExecutionError — the
+# capability-transform contract lives in the runtime package.
+dependencies = ["pgc-runtime>=2.0.0"]
+
+[project.urls]
+Homepage = "https://omnibachi.org/"
+Repository = "https://github.com/protocol-governed-computing/conformance_workloads"
+Standard = "https://doi.org/10.5281/zenodo.22150616"
+
+# Only the importable implementation ships. A sealed snapshot binds these by
+# fully qualified module path — `workloads.collatz.implementation.
+# capability_transforms.atoms.ct_pure_collatz_step_v0` — so the top-level name
+# is fixed by snapshots already sealed and cannot be nested under a prefix.
+#
+# The declarations (registry/, test_payloads/, snapshot/determinations/) are not
+# packaged. The compiler resolves the governance surface from PGC_PLATFORM_ROOT
+# and PGC_DOMAIN_ROOTS by design — "fail-hard, cwd-independent, zero inference" —
+# so a registry inside a wheel would be a second governance surface competing
+# with the repository's.
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["workloads*"]
+# packages.find defaults to namespaces = true under pyproject, so snapshot/, registry/
+# and test_payloads/ are discovered as packages despite carrying no __init__.py. They
+# are excluded by name to make the paragraph above true of the built wheel.
+exclude = ["workloads.*.snapshot*", "workloads.*.registry*", "workloads.*.test_payloads*"]
