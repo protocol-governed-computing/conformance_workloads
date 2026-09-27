@@ -46,7 +46,7 @@ resolved under this repo, not under the governance repo.
 
 ```bash
 cd ../protocol_compiler
-./compile.sh STRUCTURE_BUILD_PLATFORM_CONFIG_V1           # governance surface first
+./compile.sh STRUCTURE_BUILD_PLATFORM_CONFIG_V2           # governance surface first
 ./compile_domain.sh ../conformance_workloads/workloads/collatz
 cd ../snapshot_assembler && PGC_SNAPSHOT_PROFILE=GOVERNANCE_SURFACE_PROFILE_V0 ./assemble.sh   # compose the PNP
 cd ../protocol_runtime && ./run.sh
