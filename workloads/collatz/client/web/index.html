@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Protocol-Governed Computing — Reference Surface</title>
+    <link rel="stylesheet" href="/css/base.css">
+</head>
+<body>
+    <header class="app-header">
+        <div class="header-inner">
+            <h1 class="app-title">Protocol&#8209;Governed&nbsp;Computing <span class="accent">Platform</span></h1>
+        </div>
+    </header>
+
+    <section class="hero">
+        <h2>Welcome to the PGC Platform</h2>
+        <p>
+            A stable, externally observable surface for exercising the complete PGC reference
+            implementation against a known warm-boot snapshot. Every interaction below crosses the
+            <strong>governed transport boundary</strong>: an external protocol binds to a stable
+            <em>operation identity</em>, which resolves to a governed invocation — the wire protocol
+            is replaceable, the governed interaction is not.
+        </p>
+    </section>
+
+    <div class="card-grid">
+        <a href="/collatz" class="card">
+            <span class="tag">Reference Workload</span>
+            <h3>Collatz Conjecture</h3>
+            <p>
+                Compute a Collatz sequence through the governed boundary
+                (<code>collatz.compute</code> &rarr; TI &rarr; workflow &rarr; TE). The runtime
+                traverses an independently-authored domain graph with zero domain knowledge.
+            </p>
+        </a>
+    </div>
+
+    <footer class="app-footer">
+        PGC Platform Reference Surface v1.0.0 &mdash; governed, protocol-neutral interaction boundary
+    </footer>
+</body>
+</html>

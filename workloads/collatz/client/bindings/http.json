@@ -1,0 +1,6 @@
+{
+  "_note": "HTTP External Protocol Binding (Patch 2) — adapter-owned config, promotable to an XB_ artifact. Maps HTTP {method, path} to a stable Operation Identity (never a Workflow Identity).",
+  "bindings": [
+    { "method": "POST", "path": "/collatz", "operation": "collatz.compute" }
+  ]
+}
