@@ -1,17 +1,15 @@
-# CC_VERIFY_TERMINATION_V1
+# CC_VERIFY_TERMINATION_V2
 
 ## Machine
 
 ```yaml
-fqdn: workload::CC_VERIFY_TERMINATION_V1
-superseded_by:
-- workload::CC_VERIFY_TERMINATION_V2
+fqdn: workload::CC_VERIFY_TERMINATION_V2
 artifact_kind: CAPABILITY_CONTRACT
-version: v1
+version: v2
 governed_by: capability_contracts::CONSTITUTION_CAPABILITY_CONTRACT_V0
 authority: pgc.platform
 concern: collatz
-supersedes: workload::CC_VERIFY_TERMINATION_V0
+supersedes: workload::CC_VERIFY_TERMINATION_V1
 core:
   summary: Verify all Collatz sequences terminate at 1
   inputs:
@@ -45,13 +43,11 @@ core:
       SUCCESS: continue
       VIOLATION: exit
   - step: require_every_sequence_terminated
-    transform: capability_transforms::CT_PURE_VALIDATE_SET_MEMBERSHIP_V0
+    transform: capability_transforms::CT_PURE_REQUIRE_TRUE_V0
     inputs:
       value: $.results.check_termination.all_terminate
-      allowed_set:
-      - true
     outputs:
-      conjecture_holds: $.capability_result.is_member
+      conjecture_holds: $.capability_result.held
     result_surface:
     - SUCCESS
     - VIOLATION

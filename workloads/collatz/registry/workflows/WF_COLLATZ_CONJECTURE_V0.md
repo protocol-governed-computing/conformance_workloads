@@ -59,7 +59,7 @@ core:
         VIOLATION: EXIT_ERROR
     CC_VERIFY_TERMINATION_V0:
       type: CC
-      code: CC_VERIFY_TERMINATION_V1
+      code: CC_VERIFY_TERMINATION_V2
       inputs:
         sequences: $.results.CC_COMPUTE_SEQUENCES_V0.sequences
       next:
