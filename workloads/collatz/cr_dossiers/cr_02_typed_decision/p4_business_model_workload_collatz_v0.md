@@ -1,12 +1,102 @@
 # Stage 4 — Business Model: workload / collatz
 
-**Stage:** 4 — Business Model
+## Machine
 
-**CR:** cr_02_typed_decision
-
-**Status:** DRAFT
-
-**Feeds:** Stage 5 — Business Intent
+```yaml
+document:
+  phase: p4
+  domain: workload
+  subdomain: collatz
+  cr: cr_02_typed_decision
+  rule_set: transformation.schemas.REGISTER_SCHEMA_P4_V0
+registers:
+  actors:
+  - actor: Collatz
+    role: Decides whether a run holds the conjecture.
+    authority_class: Owning subdomain
+    source_finding: {phase: p3, register: placement_decision, key: collatz}
+  bm_entities:
+  - entity: The Sequence
+    description: The Collatz sequence computed for one number.
+    store_model: Recorded with the run's results when the conjecture holds.
+    source_finding: {phase: p2, register: entities, row: 1}
+  - entity: The Termination Check
+    description: The capability that inspects every sequence for termination; unchanged.
+    store_model: Run by the termination gate.
+    source_finding: {phase: p2, register: entities, row: 2}
+  - entity: The Termination Gate
+    description: The contract that runs the check and decides.
+    store_model: Run by the Collatz workflow.
+    source_finding: {phase: p2, register: entities, row: 3}
+  resources: []
+  events:
+  - event: NONE IDENTIFIED
+    trigger: This change recognises no new moment.
+    lifecycle_meaning: ''
+    source_finding: {phase: p1, register: business_events, row: 1}
+  relationships:
+  - subject: Collatz
+    verb: gates
+    object: the conjecture
+    capability_need: Gate the conjecture
+    source_finding: {phase: p3, register: authoring_decisions, key: Gate the conjecture}
+  capability_graph:
+  - capability: Gate the conjecture
+    source_finding: {phase: p3, register: authoring_decisions, key: Gate the conjecture}
+    status: MAJOR
+    gap_register_entry: GAP-01
+    notes: A new version that decides with the platform's capability that refuses unless a boolean is true.
+  dependency_graph:
+  - from: collatz
+    to: workload::CT_PURE_TERMINATION_CHECK_V0
+    dependency_type: transform
+    pps_status: SATISFIED
+    source_finding: {phase: p3, register: dependency_discoveries, key: The termination check}
+  - from: collatz
+    to: capability_transforms::CT_PURE_REQUIRE_TRUE_V0
+    dependency_type: transform
+    pps_status: SATISFIED
+    source_finding: {phase: p3, register: dependency_discoveries, key: Requiring a boolean true}
+  constraint_register:
+  - number: '1'
+    constraint: Every run decides and records exactly as it does today.
+    source_finding: {phase: p1, register: constraints, row: 1}
+    source: The business author
+  - number: '2'
+    constraint: This change is built before the platform refuses a step given a value of a type it does not declare.
+    source_finding: {phase: p1, register: constraints, row: 2}
+    source: The business author
+  gap_register:
+  - gap_code: GAP-01
+    source_finding: {phase: p3, register: authoring_decisions, key: Gate the conjecture}
+    capability: Gate the conjecture
+    owner_subdomain: collatz
+    resolution: AUTHOR_NEW
+  design_decisions:
+  - number: '1'
+    decision: The new gate runs the unchanged check, then the platform's capability that refuses unless a boolean is true, on all_terminate.
+    source_finding: {phase: p3, register: analysis_findings, key: Q1}
+    rationale: A capability is given only values of the types it declares.
+    constraints_imposed: No new transform.
+  - number: '2'
+    decision: Both steps route as today, and the gate's inputs, outputs and allowed outcomes are unchanged.
+    source_finding: {phase: p3, register: analysis_findings, key: Q2}
+    rationale: Every run decides as today.
+    constraints_imposed: Only the decision step's capability changes.
+  - number: '3'
+    decision: The workflow is re-pointed to the new gate.
+    source_finding: {phase: p3, register: analysis_findings, key: Q3}
+    rationale: It decides as today.
+    constraints_imposed: Only the gate its place runs changes.
+  - number: '4'
+    decision: The old gate is replaced by its new version.
+    source_finding: {phase: p3, register: analysis_findings, key: Q1}
+    rationale: A change of meaning is a new identity.
+    constraints_imposed: It stays in the record and out of reach.
+  authoring_scope:
+  - capability: Gate the conjecture
+    gap_register_ref: GAP-01
+```
 
 Consolidation of Stages 1–3. Nothing is re-litigated and nothing new is decided.
 
@@ -14,85 +104,29 @@ Consolidation of Stages 1–3. Nothing is re-litigated and nothing new is decide
 
 ## 1. Discovery Summary
 
-<!-- register:actors business_language -->
 ### Actors (actors)
-| Actor | Role | Authority Class | Source Finding |
-|-------|------|-----------------|----------------|
-| Collatz | Decides whether a run holds the conjecture. | Owning subdomain | S3 placement_decision collatz |
 
-<!-- register:bm_entities business_language -->
 ### Entities (bm_entities)
-| Entity | Description | Store Model | Source Finding |
-|--------|-------------|-------------|----------------|
-| The Sequence | The Collatz sequence computed for one number. | Recorded with the run's results when the conjecture holds. | S2 entities #1 |
-| The Termination Check | The capability that inspects every sequence for termination; unchanged. | Run by the termination gate. | S2 entities #2 |
-| The Termination Gate | The contract that runs the check and decides. | Run by the Collatz workflow. | S2 entities #3 |
 
-<!-- register:resources optional business_language -->
 ### Resources
-| Resource | Description | Source Finding |
-|----------|-------------|----------------|
-| NONE IDENTIFIED |
 
-<!-- register:events business_language -->
 ### Events (events)
-| Event | Trigger | Lifecycle Meaning | Source Finding |
-|-------|---------|-------------------|----------------|
-| NONE IDENTIFIED | This change recognises no new moment. | | S1 business_events #1 |
 
-<!-- register:relationships optional business_language -->
 ### Relationships (Candidate Capabilities)
-| Subject | Verb | Object | Capability Need | Source Finding |
-|---------|------|--------|-----------------|----------------|
-| Collatz | gates | the conjecture | Gate the conjecture | S3 authoring_decisions Gate the conjecture |
 
 ## 2. Capability Graph (capability_graph)
 
-<!-- register:capability_graph business_language -->
-| Capability | Source Finding | Status | Gap Register Entry | Notes |
-|-----------|----------------|--------|--------------------|-------|
-| Gate the conjecture | S3 authoring_decisions Gate the conjecture | MAJOR | GAP-01 | A new version that decides with the platform's capability that refuses unless a boolean is true. |
-
 ## 3. Dependency Graph (dependency_graph)
-
-<!-- register:dependency_graph -->
-| From | To | Dependency Type | PPS Status | Source Finding |
-|------|----|-----------------|------------|----------------|
-| collatz | workload::CT_PURE_TERMINATION_CHECK_V0 | transform | SATISFIED | S3 dependency_discoveries The termination check |
-| collatz | capability_transforms::CT_PURE_REQUIRE_TRUE_V0 | transform | SATISFIED | S3 dependency_discoveries Requiring a boolean true |
 
 ## 4. Constraint Register (constraint_register)
 
-<!-- register:constraint_register -->
-| # | Constraint | Source Finding | Source |
-|---|------------|----------------|--------|
-| 1 | Every run decides and records exactly as it does today. | S1 constraints #1 | The business author |
-| 2 | This change is built before the platform refuses a step given a value of a type it does not declare. | S1 constraints #2 | The business author |
-
 ## 5. Gap Register (gap_register)
-
-<!-- register:gap_register business_language -->
-| Gap Code | Source Finding | Capability | Owner Subdomain | Resolution |
-|----------|----------------|-----------|-----------------|------------|
-| GAP-01 | S3 authoring_decisions Gate the conjecture | Gate the conjecture | collatz | AUTHOR_NEW |
 
 ## 6. Design Decisions (design_decisions)
 
-<!-- register:design_decisions -->
-| # | Decision | Source Finding | Rationale | Constraints Imposed |
-|---|----------|----------------|-----------|---------------------|
-| 1 | The new gate runs the unchanged check, then the platform's capability that refuses unless a boolean is true, on all_terminate. | S3 analysis_findings Q1 | A capability is given only values of the types it declares. | No new transform. |
-| 2 | Both steps route as today, and the gate's inputs, outputs and allowed outcomes are unchanged. | S3 analysis_findings Q2 | Every run decides as today. | Only the decision step's capability changes. |
-| 3 | The workflow is re-pointed to the new gate. | S3 analysis_findings Q3 | It decides as today. | Only the gate its place runs changes. |
-| 4 | The old gate is replaced by its new version. | S3 analysis_findings Q1 | A change of meaning is a new identity. | It stays in the record and out of reach. |
-
 ## 7. Authoring Scope (authoring_scope)
 
-<!-- register:authoring_scope -->
 ### In Scope — This CR
-| Capability | Gap Register Ref |
-|-----------|-----------------|
-| Gate the conjecture | GAP-01 |
 
 ### Deferred — Future CR
 | Capability | Deferred Reason |

@@ -1,12 +1,62 @@
 # Stage 6 — Governance Intent: workload / collatz
 
-**Stage:** 6 — Governance Intent
+## Machine
 
-**CR:** cr_02_typed_decision
-
-**Status:** DRAFT
-
-**Feeds:** Stage 7 — Design Intent
+```yaml
+document:
+  phase: p6
+  domain: workload
+  subdomain: collatz
+  cr: cr_02_typed_decision
+  rule_set: transformation.schemas.REGISTER_SCHEMA_P6_V0
+registers:
+  ownership:
+  - capability: Gate the conjecture
+    owner_subdomain: collatz
+    disposition: OWNED
+    existing_artifact: workload::CC_VERIFY_TERMINATION_V1
+    source_finding: {phase: p5, register: scope_boundary, key: Gate the conjecture}
+  - capability: Tell a malformed input apart from a violation
+    owner_subdomain: collatz
+    disposition: DEFERRED
+    existing_artifact: ''
+    source_finding: {phase: p5, register: scope_boundary, key: Tell a malformed input apart from a violation}
+  storage_governance: []
+  cross_subdomain_deps:
+  - dependency: Requiring a boolean true
+    direction: collatz -> capability_transforms
+    existing_artifact: capability_transforms::CT_PURE_REQUIRE_TRUE_V0
+    status: SATISFIED
+    source_finding: {phase: p4, register: dependency_graph, key: 'capability_transforms::CT_PURE_REQUIRE_TRUE_V0'}
+  pps_artifacts_requiring_action:
+  - fqdn: workload::CC_VERIFY_TERMINATION_V1
+    current_status: Present; gives the set-membership check a boolean where it declares a string
+    action: REPLACE
+    source_finding: {phase: p4, register: design_decisions, row: 4}
+  - fqdn: workload::WF_COLLATZ_CONJECTURE_V0
+    current_status: Present; runs the gate being replaced
+    action: REVIEW
+    source_finding: {phase: p4, register: design_decisions, row: 3}
+  - fqdn: workload::CT_PURE_TERMINATION_CHECK_V0
+    current_status: Present and reused unchanged
+    action: REUSE
+    source_finding: {phase: p4, register: dependency_graph, key: 'workload::CT_PURE_TERMINATION_CHECK_V0'}
+  - fqdn: capability_transforms::CT_PURE_REQUIRE_TRUE_V0
+    current_status: Present and reused unchanged
+    action: REUSE
+    source_finding: {phase: p4, register: dependency_graph, key: 'capability_transforms::CT_PURE_REQUIRE_TRUE_V0'}
+  boundary_rules:
+  - rule_name: GIVE_WHAT_IS_DECLARED
+    statement: The gate decides with the platform's capability that refuses unless a boolean is true, given all_terminate, a boolean.
+    source_finding: {phase: p4, register: design_decisions, row: 1}
+  - rule_name: RE_POINT_THE_RUNNER
+    statement: The workflow runs the new gate; nothing else about it changes.
+    source_finding: {phase: p4, register: design_decisions, row: 3}
+  governance_outcome:
+  - capability: Gate the conjecture
+    owner_subdomain: collatz
+    source_finding: {phase: p6, register: ownership, key: Gate the conjecture}
+```
 
 Placement of rules. The termination gate is Collatz's; the check it runs and the capability it
 decides with are unchanged.
@@ -15,60 +65,25 @@ decides with are unchanged.
 
 ## 1. Ownership
 
-<!-- register:ownership business_language=capability -->
-| Capability | Owner Subdomain | Disposition (OWNED, SATISFIED, DEFERRED) | Existing Artifact | Source Finding |
-|------------|-----------------|------------------------------------------|-------------------|----------------|
-| Gate the conjecture | collatz | OWNED | workload::CC_VERIFY_TERMINATION_V1 | S5 scope_boundary Gate the conjecture |
-| Tell a malformed input apart from a violation | collatz | DEFERRED |  | S5 scope_boundary Tell a malformed input apart from a violation |
-
 ---
 
 ## 2. Storage Governance
-
-<!-- register:storage_governance business_language=storage_need,purpose -->
-| Storage Need | Purpose | Subdomain | Source Finding |
-|--------------|---------|-----------|----------------|
-| NONE IDENTIFIED |
 
 ---
 
 ## 3. Cross-Subdomain Dependencies
 
-<!-- register:cross_subdomain_deps optional -->
-| Dependency | Direction | Existing Artifact | Status (SATISFIED, GAP) | Source Finding |
-|------------|-----------|-------------------|-------------------------|----------------|
-| Requiring a boolean true | collatz -> capability_transforms | capability_transforms::CT_PURE_REQUIRE_TRUE_V0 | SATISFIED | S4 dependency_graph capability_transforms::CT_PURE_REQUIRE_TRUE_V0 |
-
 ---
 
 ## 4. PPS Artifacts Requiring Action
-
-<!-- register:pps_artifacts_requiring_action optional -->
-| FQDN | Current Status | Action (REPLACE, REVIEW, REUSE, EXTEND) | Source Finding |
-|------|----------------|----------------------------------|----------------|
-| workload::CC_VERIFY_TERMINATION_V1 | Present; gives the set-membership check a boolean where it declares a string | REPLACE | S4 design_decisions #4 |
-| workload::WF_COLLATZ_CONJECTURE_V0 | Present; runs the gate being replaced | REVIEW | S4 design_decisions #3 |
-| workload::CT_PURE_TERMINATION_CHECK_V0 | Present and reused unchanged | REUSE | S4 dependency_graph workload::CT_PURE_TERMINATION_CHECK_V0 |
-| capability_transforms::CT_PURE_REQUIRE_TRUE_V0 | Present and reused unchanged | REUSE | S4 dependency_graph capability_transforms::CT_PURE_REQUIRE_TRUE_V0 |
 
 ---
 
 ## 5. Governance Boundary Rules
 
-<!-- register:boundary_rules optional -->
-| Rule Name | Statement | Source Finding |
-|-----------|-----------|----------------|
-| GIVE_WHAT_IS_DECLARED | The gate decides with the platform's capability that refuses unless a boolean is true, given all_terminate, a boolean. | S4 design_decisions #1 |
-| RE_POINT_THE_RUNNER | The workflow runs the new gate; nothing else about it changes. | S4 design_decisions #3 |
-
 ---
 
 ## 6. Governance Outcome
-
-<!-- register:governance_outcome optional -->
-| Capability | Owner Subdomain | Source Finding |
-|------------|-----------------|----------------|
-| Gate the conjecture | collatz | S6 ownership Gate the conjecture |
 
 ---
 
