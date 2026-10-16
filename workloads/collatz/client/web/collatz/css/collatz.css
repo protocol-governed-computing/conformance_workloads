@@ -60,3 +60,23 @@
 .seq-num.one  { color: #4ade80; font-weight: bold; }
 .seq-arrow { color: #475569; padding: 0 3px; font-size: 11px; line-height: 1.8; }
 .seq-truncated { color: #64748b; font-size: 12px; padding: 2px 6px; font-style: italic; }
+
+/* ── Input note ── */
+.field-note { font-size: 12px; color: #64748b; margin-top: 6px; line-height: 1.5; }
+
+/* ── The path the run took (workflow_diagram.js) ── */
+.workflow-panel { margin-top: 28px; padding: 18px; border: 1px solid #e2e8f0; border-radius: 6px; background: #fff; }
+.workflow-panel h2 { font-size: 15px; color: #0b1e3c; margin-bottom: 6px; }
+.workflow-panel p { font-size: 13px; color: #475569; line-height: 1.6; margin-bottom: 10px; }
+.workflow-foot { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; font-size: 12px !important; }
+.workflow-foot span { font-family: 'Courier New', monospace; color: #94a3b8; }
+svg.workflow { width: 100%; height: auto; display: block; margin: 6px 0 4px; }
+svg.workflow .box rect { fill: #f8fafc; stroke: #94a3b8; stroke-width: 1.2; }
+svg.workflow .box .kind { fill: #64748b; font: bold 11px 'Courier New', monospace; }
+svg.workflow .box .name { fill: #0b1e3c; font: 13px Arial, Helvetica, sans-serif; }
+svg.workflow .edge path { fill: none; stroke: #94a3b8; stroke-width: 1.2; }
+svg.workflow .edge text { fill: #64748b; font: 10px 'Courier New', monospace; }
+svg.workflow .arrow { fill: #94a3b8; }
+svg.workflow .box.taken rect { fill: #fdf6e0; stroke: #b8941f; stroke-width: 2.2; }
+svg.workflow .edge.taken path { stroke: #b8941f; stroke-width: 2.4; }
+svg.workflow .edge.taken text { fill: #8a6d12; font-weight: bold; }

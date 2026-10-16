@@ -63,8 +63,10 @@
 
         <form id="collatz-form" onsubmit="event.preventDefault(); submitCollatz();">
             <div class="form-group">
-                <label for="seed_number">Enter a number (1 &ndash; 999,999)</label>
-                <input type="number" id="seed_number" min="1" max="999999" placeholder="e.g. 27" required>
+                <label for="seed_number">Enter a number</label>
+                <input type="text" id="seed_number" placeholder="e.g. 27" autocomplete="off">
+                <p class="field-note">This page sends what you type and checks nothing. The governed
+                    entrance decides what it admits, and names the reason when it refuses.</p>
             </div>
 
             <div class="quick-picks">
@@ -81,36 +83,27 @@
 
         <div id="result" class="result-panel"></div>
 
-        <details class="explainer" style="margin-top:24px;">
-            <summary>Examine the compiled workflow (DAG projection)</summary>
-            <div class="explainer-body">
-                <p>
-                    Below is the <strong>compiled</strong> execution graph of
-                    <code>WF_COLLATZ_CONJECTURE_V0</code>, served live from the Reference Platform
-                    Snapshot. Trace the finite, acyclic path the runtime traverses &mdash; a cognitive
-                    exercise in reading a governed workflow as a DAG rather than as code.
-                </p>
-                <img id="wf-projection"
-                     src="/snapshot/behavior_logic/workload/WF_COLLATZ_CONJECTURE_V0/WF_COLLATZ_CONJECTURE_V0.projection.png"
-                     alt="Compiled DAG projection of WF_COLLATZ_CONJECTURE_V0"
-                     style="max-width:100%;border:1px solid #e2e8f0;border-radius:6px;margin-top:4px;"
-                     onerror="this.style.display='none'; document.getElementById('wf-projection-msg').style.display='block';">
-                <p id="wf-projection-msg" style="display:none;color:#991b1b;font-size:13px;">
-                    Compiled projection unavailable &mdash; the snapshot may have been cleaned or
-                    rebuilt. Rebuild the snapshot to regenerate it.
-                </p>
-                <p style="font-size:12px;margin-top:6px;">
-                    <a href="/snapshot/behavior_logic/workload/WF_COLLATZ_CONJECTURE_V0/WF_COLLATZ_CONJECTURE_V0.projection.png"
-                       target="_blank" rel="noopener">Open full size &rarr;</a>
-                </p>
-            </div>
-        </details>
+        <section class="workflow-panel">
+            <h2>The path the run took</h2>
+            <p>
+                The workflow the snapshot declares, drawn from its compiled graph. After a run, the
+                boxes and routes the trace records are marked. A run can follow only the routes drawn
+                here: there is no other.
+            </p>
+            <svg id="wf-diagram" role="img" aria-label="Compiled workflow WF_COLLATZ_CONJECTURE_V0"></svg>
+            <p class="workflow-foot">
+                <a href="/snapshot/behavior_logic/workload/WF_COLLATZ_CONJECTURE_V0/WF_COLLATZ_CONJECTURE_V0.projection.png"
+                   target="_blank" rel="noopener">The compiler's own projection of this workflow &rarr;</a>
+                <span id="wf-snapshot"></span>
+            </p>
+        </section>
     </div>
 
     <footer class="app-footer">
         operation <code>collatz.compute</code> &rarr; TI &rarr; WF &rarr; TE &mdash; PGC Transport Standard V0
     </footer>
 
+    <script src="js/workflow_diagram.js"></script>
     <script src="js/collatz_bridge.js"></script>
 </body>
 </html>
