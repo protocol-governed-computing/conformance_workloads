@@ -73,6 +73,7 @@ artifact_discovery:
   - STRUCTURE
   - TI
   - TE
+  - TEST_DATA
 output_configuration:
   root: snapshot
   artifacts:
@@ -103,6 +104,9 @@ output_configuration:
   bootstrap_search_roots:
   - layer: GOVERNANCE
     subpath: structure/structures
+  conformance:
+    layer: GOVERNANCE
+    subpath: compiled/transform_conformance
 build_phases:
 - phase: discover
   description: Discover workload artifacts via STRUCTURE
