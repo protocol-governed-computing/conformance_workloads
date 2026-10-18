@@ -6,7 +6,7 @@
 fqdn: workload::TEST_DATA_CT_PURE_TERMINATION_CHECK_V0
 artifact_kind: TEST_DATA
 version: V0
-governed_by: conformance::CONSTITUTION_TEST_DATA_V2
+governed_by: conformance::CONSTITUTION_TEST_DATA_V0
 authority: pgc.platform
 concern: workload
 target: workload::CT_PURE_TERMINATION_CHECK_V0

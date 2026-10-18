@@ -66,32 +66,18 @@ registers:
     step: '9'
     code: workload::CC_VERIFY_TERMINATION_V0
     action: NEW
-    subdomain: workload
+    subdomain: collatz
     depends_on:
     - workload::CT_PURE_TERMINATION_CHECK_V0
   - wave: '2'
     step: '10'
-    code: workload::CC_VERIFY_TERMINATION_V1
-    action: NEW
-    subdomain: collatz
-    depends_on:
-    - workload::CT_PURE_TERMINATION_CHECK_V0
-  - wave: '2'
-    step: '11'
-    code: workload::CC_VERIFY_TERMINATION_V2
-    action: NEW
-    subdomain: collatz
-    depends_on:
-    - workload::CT_PURE_TERMINATION_CHECK_V0
-  - wave: '2'
-    step: '12'
     code: workload::RB_COLLATZ_V0
     action: NEW
     subdomain: workload
     depends_on:
     - workload::STRUCTURE_COLLATZ_STORAGE_V0
   - wave: '3'
-    step: '13'
+    step: '11'
     code: workload::WF_COLLATZ_CONJECTURE_V0
     action: NEW
     subdomain: workload
@@ -112,8 +98,8 @@ registers:
     code: workload::WF_COLLATZ_CONJECTURE_V0
   mandate_artifact_summary:
   - action: NEW
-    count: '13'
-    description: 1 STRUCTURE, 1 AC, 1 EV, 2 CT, 5 CC, 1 IN, 1 WF, 1 RB
+    count: '11'
+    description: 1 STRUCTURE, 1 AC, 1 EV, 2 CT, 3 CC, 1 IN, 1 WF, 1 RB
   field_declarations:
   - code: workload::STRUCTURE_COLLATZ_STORAGE_V0
     subdomain_field: workload
@@ -132,10 +118,6 @@ registers:
   - code: workload::CC_COMPUTE_SEQUENCES_V0
     subdomain_field: workload
   - code: workload::CC_VERIFY_TERMINATION_V0
-    subdomain_field: workload
-  - code: workload::CC_VERIFY_TERMINATION_V1
-    subdomain_field: collatz
-  - code: workload::CC_VERIFY_TERMINATION_V2
     subdomain_field: collatz
   - code: workload::RB_COLLATZ_V0
     subdomain_field: workload
@@ -158,6 +140,6 @@ registers:
   cross_subdomain_notes: []
 ```
 
-The 13 artifacts of `workload`'s design of record, scheduled in dependency order. Written by
+The 11 artifacts of `workload`'s design of record, scheduled in dependency order. Written by
 `python -m transformation.record` from the P7 beside it. The mandate orders the build; it decides
 nothing.

@@ -30,11 +30,6 @@ registers:
     summary: Store Collatz results to mutable JSON storage
     owner_subdomain: workload
     status: NEW
-  - family: CC
-    code: workload::CC_VERIFY_TERMINATION_V0
-    summary: Verify all Collatz sequences terminate at 1
-    owner_subdomain: workload
-    status: NEW
   - family: CT
     code: workload::CT_PURE_COLLATZ_STEP_V0
     summary: Compute full Collatz sequence for each input number
@@ -46,12 +41,7 @@ registers:
     owner_subdomain: workload
     status: NEW
   - family: CC
-    code: workload::CC_VERIFY_TERMINATION_V1
-    summary: Verify all Collatz sequences terminate at 1
-    owner_subdomain: collatz
-    status: NEW
-  - family: CC
-    code: workload::CC_VERIFY_TERMINATION_V2
+    code: workload::CC_VERIFY_TERMINATION_V0
     summary: Verify all Collatz sequences terminate at 1
     owner_subdomain: collatz
     status: NEW
@@ -105,7 +95,6 @@ registers:
     routing:
       SUCCESS: CC_STORE_RESULTS_V0
       VIOLATION: EXIT_CONJECTURE_VIOLATED
-    runs: CC_VERIFY_TERMINATION_V2
   - workflow: workload::WF_COLLATZ_CONJECTURE_V0
     node: CC_STORE_RESULTS_V0
     node_type: CC
@@ -188,29 +177,6 @@ registers:
     - all_terminate
     - non_terminating
     routing:
-      SUCCESS: evaluate_conjecture
-      VIOLATION: exit
-    interpreted_by: null
-    semantic_status: SUCCESS
-    interface:
-      in:
-        sequences: sequences
-      out:
-        all_terminate: all_terminate
-        non_terminating: non_terminating
-  - cc_code: workload::CC_VERIFY_TERMINATION_V1
-    step: '1'
-    step_name: check_termination
-    capability: workload::CT_PURE_TERMINATION_CHECK_V0
-    kind: CT
-    operation: null
-    store: null
-    consumes:
-    - sequences
-    produces:
-    - all_terminate
-    - non_terminating
-    routing:
       SUCCESS: continue
       VIOLATION: exit
     interpreted_by: null
@@ -221,53 +187,7 @@ registers:
       out:
         all_terminate: all_terminate
         non_terminating: non_terminating
-  - cc_code: workload::CC_VERIFY_TERMINATION_V1
-    step: '2'
-    step_name: require_every_sequence_terminated
-    capability: capability_transforms::CT_PURE_VALIDATE_SET_MEMBERSHIP_V0
-    kind: CT
-    operation: null
-    store: null
-    consumes:
-    - value
-    - allowed_set
-    produces:
-    - conjecture_holds
-    routing:
-      SUCCESS: continue
-      VIOLATION: exit
-    interpreted_by: null
-    semantic_status: SUCCESS
-    interface:
-      in:
-        value: value
-        allowed_set: allowed_set
-      out:
-        conjecture_holds: conjecture_holds
-  - cc_code: workload::CC_VERIFY_TERMINATION_V2
-    step: '1'
-    step_name: check_termination
-    capability: workload::CT_PURE_TERMINATION_CHECK_V0
-    kind: CT
-    operation: null
-    store: null
-    consumes:
-    - sequences
-    produces:
-    - all_terminate
-    - non_terminating
-    routing:
-      SUCCESS: continue
-      VIOLATION: exit
-    interpreted_by: null
-    semantic_status: SUCCESS
-    interface:
-      in:
-        sequences: sequences
-      out:
-        all_terminate: all_terminate
-        non_terminating: non_terminating
-  - cc_code: workload::CC_VERIFY_TERMINATION_V2
+  - cc_code: workload::CC_VERIFY_TERMINATION_V0
     step: '2'
     step_name: require_every_sequence_terminated
     capability: capability_transforms::CT_PURE_REQUIRE_TRUE_V0
@@ -334,59 +254,12 @@ registers:
     direction: OUTPUT
     field: non_terminating
     bound_to: capability_result.non_terminating
-  - owner: workload::CC_VERIFY_TERMINATION_V1
-    step: check_termination
-    direction: INPUT
-    field: sequences
-    bound_to: inputs.sequences
-  - owner: workload::CC_VERIFY_TERMINATION_V1
-    step: check_termination
-    direction: OUTPUT
-    field: all_terminate
-    bound_to: capability_result.all_terminate
-  - owner: workload::CC_VERIFY_TERMINATION_V1
-    step: check_termination
-    direction: OUTPUT
-    field: non_terminating
-    bound_to: capability_result.non_terminating
-  - owner: workload::CC_VERIFY_TERMINATION_V1
+  - owner: workload::CC_VERIFY_TERMINATION_V0
     step: require_every_sequence_terminated
     direction: INPUT
     field: value
     bound_to: results.check_termination.all_terminate
-  - owner: workload::CC_VERIFY_TERMINATION_V1
-    step: require_every_sequence_terminated
-    direction: INPUT
-    field: allowed_set
-    bound_to:
-      literal:
-      - true
-  - owner: workload::CC_VERIFY_TERMINATION_V1
-    step: require_every_sequence_terminated
-    direction: OUTPUT
-    field: conjecture_holds
-    bound_to: capability_result.is_member
-  - owner: workload::CC_VERIFY_TERMINATION_V2
-    step: check_termination
-    direction: INPUT
-    field: sequences
-    bound_to: inputs.sequences
-  - owner: workload::CC_VERIFY_TERMINATION_V2
-    step: check_termination
-    direction: OUTPUT
-    field: all_terminate
-    bound_to: capability_result.all_terminate
-  - owner: workload::CC_VERIFY_TERMINATION_V2
-    step: check_termination
-    direction: OUTPUT
-    field: non_terminating
-    bound_to: capability_result.non_terminating
-  - owner: workload::CC_VERIFY_TERMINATION_V2
-    step: require_every_sequence_terminated
-    direction: INPUT
-    field: value
-    bound_to: results.check_termination.all_terminate
-  - owner: workload::CC_VERIFY_TERMINATION_V2
+  - owner: workload::CC_VERIFY_TERMINATION_V0
     step: require_every_sequence_terminated
     direction: OUTPUT
     field: conjecture_holds
@@ -466,27 +339,6 @@ registers:
     required: 'NO'
     default: null
     meaning: result status
-  - artifact: workload::CC_VERIFY_TERMINATION_V0
-    direction: INPUT
-    field: sequences
-    type: object
-    required: 'YES'
-    default: null
-    meaning: sequences
-  - artifact: workload::CC_VERIFY_TERMINATION_V0
-    direction: OUTPUT
-    field: all_terminate
-    type: boolean
-    required: 'NO'
-    default: null
-    meaning: all terminate
-  - artifact: workload::CC_VERIFY_TERMINATION_V0
-    direction: OUTPUT
-    field: non_terminating
-    type: array
-    required: 'NO'
-    default: null
-    meaning: non terminating
   - artifact: workload::CT_PURE_COLLATZ_STEP_V0
     direction: INPUT
     field: numbers
@@ -522,56 +374,28 @@ registers:
     required: 'YES'
     default: null
     meaning: List of seeds whose sequences did not end at 1
-  - artifact: workload::CC_VERIFY_TERMINATION_V1
+  - artifact: workload::CC_VERIFY_TERMINATION_V0
     direction: INPUT
     field: sequences
     type: object
     required: 'YES'
     default: null
     meaning: sequences
-  - artifact: workload::CC_VERIFY_TERMINATION_V1
+  - artifact: workload::CC_VERIFY_TERMINATION_V0
     direction: OUTPUT
     field: all_terminate
     type: boolean
     required: 'NO'
     default: null
     meaning: all terminate
-  - artifact: workload::CC_VERIFY_TERMINATION_V1
+  - artifact: workload::CC_VERIFY_TERMINATION_V0
     direction: OUTPUT
     field: non_terminating
     type: array
     required: 'NO'
     default: null
     meaning: non terminating
-  - artifact: workload::CC_VERIFY_TERMINATION_V1
-    direction: OUTPUT
-    field: conjecture_holds
-    type: boolean
-    required: 'NO'
-    default: null
-    meaning: conjecture holds
-  - artifact: workload::CC_VERIFY_TERMINATION_V2
-    direction: INPUT
-    field: sequences
-    type: object
-    required: 'YES'
-    default: null
-    meaning: sequences
-  - artifact: workload::CC_VERIFY_TERMINATION_V2
-    direction: OUTPUT
-    field: all_terminate
-    type: boolean
-    required: 'NO'
-    default: null
-    meaning: all terminate
-  - artifact: workload::CC_VERIFY_TERMINATION_V2
-    direction: OUTPUT
-    field: non_terminating
-    type: array
-    required: 'NO'
-    default: null
-    meaning: non terminating
-  - artifact: workload::CC_VERIFY_TERMINATION_V2
+  - artifact: workload::CC_VERIFY_TERMINATION_V0
     direction: OUTPUT
     field: conjecture_holds
     type: boolean
@@ -633,14 +457,6 @@ registers:
   - artifact: workload::AC_REFERENCE_ACTOR_V0
     property: type
     value: system
-  - artifact: workload::CC_VERIFY_TERMINATION_V1
-    property: supersedes
-    value:
-    - workload::CC_VERIFY_TERMINATION_V0
-  - artifact: workload::CC_VERIFY_TERMINATION_V2
-    property: supersedes
-    value:
-    - workload::CC_VERIFY_TERMINATION_V1
   - artifact: workload::STRUCTURE_COLLATZ_STORAGE_V0
     property: layer
     value: DOMAINS
@@ -803,15 +619,15 @@ registers:
   artifact_summary:
   - action: NEW
     subdomain: collatz
-    count: '2'
-    artifacts: workload::CC_VERIFY_TERMINATION_V1, workload::CC_VERIFY_TERMINATION_V2
+    count: '1'
+    artifacts: workload::CC_VERIFY_TERMINATION_V0
   - action: NEW
     subdomain: workload
-    count: '11'
+    count: '10'
     artifacts: workload::AC_REFERENCE_ACTOR_V0, workload::CC_COMPUTE_SEQUENCES_V0, workload::CC_STORE_RESULTS_V0,
-      workload::CC_VERIFY_TERMINATION_V0, workload::CT_PURE_COLLATZ_STEP_V0, workload::CT_PURE_TERMINATION_CHECK_V0,
-      workload::EV_CONJECTURE_EVALUATED_V0, workload::IN_COLLATZ_INPUT_VALIDATED_V0, workload::STRUCTURE_COLLATZ_STORAGE_V0,
-      workload::RB_COLLATZ_V0, workload::WF_COLLATZ_CONJECTURE_V0
+      workload::CT_PURE_COLLATZ_STEP_V0, workload::CT_PURE_TERMINATION_CHECK_V0, workload::EV_CONJECTURE_EVALUATED_V0,
+      workload::IN_COLLATZ_INPUT_VALIDATED_V0, workload::STRUCTURE_COLLATZ_STORAGE_V0, workload::RB_COLLATZ_V0,
+      workload::WF_COLLATZ_CONJECTURE_V0
   refusal_discharge: []
   refusal_deferrals: []
   refusal_governance_discharge: []

@@ -1,15 +1,14 @@
-# CC_VERIFY_TERMINATION_V2
+# CC_VERIFY_TERMINATION_V0
 
 ## Machine
 
 ```yaml
-fqdn: workload::CC_VERIFY_TERMINATION_V2
+fqdn: workload::CC_VERIFY_TERMINATION_V0
 artifact_kind: CAPABILITY_CONTRACT
-version: v2
+version: v0
 governed_by: capability_contracts::CONSTITUTION_CAPABILITY_CONTRACT_V0
 authority: pgc.platform
 concern: collatz
-supersedes: workload::CC_VERIFY_TERMINATION_V1
 core:
   summary: Verify all Collatz sequences terminate at 1
   inputs:
