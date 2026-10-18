@@ -34,8 +34,9 @@ export PGC_DATA_ROOT="${PGC_DATA_ROOT:-$UMBRELLA/data/collatz_client}"
 #   /          the web client (shell + all screens)
 #   /traces    live per-run evidence from the instance data root (transient)
 #   /snapshot  live inspection of the assembled snapshot (compiled artifacts, PNGs)
+#   /diagram   the inspector's workflow diagram, which this client draws its workflow with
 # Live means never stale; a missing artifact fails soft via the adapter's friendly 404.
-export PGC_STATIC_MOUNTS="/=$CLIENT/web;/traces=$PGC_DATA_ROOT/traces;/snapshot=$PGC_SNAPSHOT_ROOT"
+export PGC_STATIC_MOUNTS="/=$CLIENT/web;/traces=$PGC_DATA_ROOT/traces;/snapshot=$PGC_SNAPSHOT_ROOT;/diagram=$PGC_INSPECTOR_ROOT/client/web/workflow/js"
 export PGC_HTTP_PORT="${PGC_HTTP_PORT:-8000}"
 
 echo "PGC collatz client (snapshot-bound)"

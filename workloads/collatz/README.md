@@ -41,5 +41,5 @@ workloads/collatz/
     capability_transforms/atoms/  ct_pure_collatz_step_v0.py  ct_pure_termination_check_v0.py
 ```
 
-Compiled as its own domain via `STRUCTURE_BUILD_WORKLOAD_CONFIG_V1` (domain id `workload`),
+Compiled as its own domain via `STRUCTURE_BUILD_WORKLOAD_CONFIG_V0` (domain id `workload`),
 assembled as a second domain alongside `platform`.
