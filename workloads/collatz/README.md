@@ -22,13 +22,11 @@ leave the platform's identity/hash unchanged.
   Deliberately isolates and proves cross-domain capability consumption: compile-time capability
   import + runtime cross-domain handler resolution + assembler vocabulary address-space reconciliation.
 
-## Provenance
+## Namespace
 
-Extracted from the RI-0 `ai_governance` domain (`registry/collatz_conjecture/`) solely as a reference
-workload; re-namespaced `ai_governance::` → `workload::`. It is **not** semantically an AI-governance
-artifact — its prior location there was incidental. When RI-0 `ai_governance` is migrated to `pgs::`,
-Collatz is removed there to avoid duplication. The RI-0 web demo UI (`collatz.css`,
-`collatz_bridge.js`) is intentionally dropped — it is not part of the conformance/regression workload.
+Collatz is a reference workload in its own namespace, `workload::`. It belongs to no business
+domain. Its web client, under `client/web/collatz/`, plays the workload over the transport boundary
+and is not part of the conformance workload.
 
 ## Layout
 
