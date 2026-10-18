@@ -31,7 +31,6 @@ core:
       type: array
   result_status_contract:
     allowed:
-    - SUCCESS
     - VIOLATION
     on_input_failure: VIOLATION
   pipeline:

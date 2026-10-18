@@ -19,6 +19,8 @@ authority: pgc.platform
 concern: workload
 core:
   summary: Collatz reference-workload storage topology
+  subdomain: workload
+  layer: DOMAINS
   description: Maps the COLLATZ_RESULTS entity store to a path under the instance data root.
   domain: workload
   storage_roots:

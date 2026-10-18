@@ -23,8 +23,5 @@ core:
   storage_structure: workload::STRUCTURE_COLLATZ_STORAGE_V0
   bindings:
     capability_side_effects::CS_MUTABLE_JSON_V0:
-      type: CS
-      host: MutableJsonRuntime
-      operation: READ_WRITE
       policy: {}
 ```

@@ -35,7 +35,7 @@ version: v0
 governed_by: workflow::CONSTITUTION_WORKFLOW_V0
 authority: pgc.platform
 concern: workload
-subdomain: collatz
+subdomain: workload
 structure: execution::STRUCTURE_RUNTIME_EXECUTION_V0
 runtime_binding: workload::RB_COLLATZ_V0
 core:
@@ -78,16 +78,12 @@ core:
         BACKEND_ERROR: EXIT_ERROR
     EXIT_CONJECTURE_PROVEN:
       type: EXIT
-      reason: COMPLETED
       emit: workload::EV_CONJECTURE_EVALUATED_V0
     EXIT_CONJECTURE_VIOLATED:
       type: EXIT
-      reason: COMPLETED
       emit: workload::EV_CONJECTURE_EVALUATED_V0
     EXIT_REJECTED:
       type: EXIT
-      reason: EXITED
     EXIT_ERROR:
       type: EXIT
-      reason: FAILED
 ```

@@ -30,5 +30,4 @@ core:
     role:
       type: string
       required: true
-      value: reference_workload_runner
 ```
