@@ -10,7 +10,6 @@ __pycache__/
 # editor
 .idea/
 .vscode/
-CLAUDE.md
 compiled/
 **/compiled/
 snapshot/
