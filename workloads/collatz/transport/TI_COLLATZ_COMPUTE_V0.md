@@ -3,7 +3,6 @@
 **Kind:** Transport Ingress Contract (Transport Standard V0 §6)
 **Operation Identity:** `collatz.compute`
 **Home:** platform-resident boundary declaration for the Collatz reference workload.
-**Status:** cut-#1 hand-authored. Promoted to a compiler-recognized `TI_` kind in Phase 3.
 
 Declares the admission semantics for the operation `collatz.compute`: its input
 contract, the handler it binds to, and how the canonical input maps onto that handler.

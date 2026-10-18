@@ -3,7 +3,6 @@
 **Kind:** Transport Egress Contract (Transport Standard V0 §7)
 **Operation Identity:** `collatz.compute`
 **Home:** platform-resident boundary declaration for the Collatz reference workload.
-**Status:** cut-#1 hand-authored. Promoted to a compiler-recognized `TE_` kind in Phase 3.
 
 Classifies a PGC Result into a protocol-neutral Result Class and declares the output
 projection and evidence exposure. It carries **no** protocol semantics — no HTTP status,
