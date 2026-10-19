@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Collatz Conjecture — PGC Platform</title>
+    <link rel="stylesheet" href="/css/base.css">
+    <link rel="stylesheet" href="css/collatz.css">
+</head>
+<body>
+    <header class="app-header">
+        <div class="header-inner">
+            <h1 class="app-title">Collatz Conjecture</h1>
+        </div>
+        <nav class="screen-nav">
+            <a href="/">&larr; Platform Home</a>
+        </nav>
+    </header>
+
+    <div class="container collatz-wide">
+
+        <details class="explainer" open>
+            <summary>What is the Collatz Conjecture?</summary>
+            <div class="explainer-body">
+                <p>Pick any positive integer. Apply one simple rule repeatedly:</p>
+                <div class="rule-box">
+                    <span class="rule-even">If <strong>n</strong> is <em>even</em> &rarr; <strong>n &divide; 2</strong></span>
+                    <span class="rule-sep">&nbsp;&nbsp;&bull;&nbsp;&nbsp;</span>
+                    <span class="rule-odd">If <strong>n</strong> is <em>odd</em> &rarr; <strong>3n + 1</strong></span>
+                </div>
+                <p>
+                    The conjecture states: <strong>every positive integer eventually reaches 1.</strong>
+                    No counterexample has ever been found, and no universal proof exists.
+                </p>
+                <p class="explainer-pgc-note">
+                    In PGC the runtime doesn't know what Collatz means. This page speaks only the
+                    operation identity <code>collatz.compute</code> across the governed transport
+                    boundary &mdash; it never names a workflow. The trace is verifiable evidence of
+                    what was computed.
+                </p>
+            </div>
+        </details>
+
+        <details class="explainer">
+            <summary>FYI &mdash; recursion without a loop</summary>
+            <div class="explainer-body">
+                <p>
+                    Collatz is an inherently <strong>recursive</strong> computation: apply the rule
+                    repeatedly until you reach 1, with no known bound on how many steps that takes.
+                </p>
+                <p class="explainer-pgc-note">
+                    Yet PGC governs it as a <strong>finite, acyclic DAG</strong>
+                    (<code>IN &rarr; compute &rarr; verify &rarr; store &rarr; exit</code>) that the
+                    runtime traverses <strong>without any loop or recursion construct</strong>. The
+                    unbounded iteration is sealed inside a <em>pure capability transform</em>; the
+                    governed control flow itself never loops and never recurses. The platform
+                    therefore supports recursive / unbounded workloads <strong>without</strong> adding
+                    a <code>loop</code> primitive to the protocol &mdash; a non-obvious but
+                    foundational property of pure DAG traversal.
+                </p>
+            </div>
+        </details>
+
+        <form id="collatz-form" onsubmit="event.preventDefault(); submitCollatz();">
+            <div class="form-group">
+                <label for="seed_number">Enter a number</label>
+                <input type="text" id="seed_number" placeholder="e.g. 27" autocomplete="off">
+                <p class="field-note">This page sends what you type and checks nothing. The governed
+                    entrance decides what it admits, and names the reason when it refuses.</p>
+            </div>
+
+            <div class="quick-picks">
+                <span class="quick-label">Try:</span>
+                <button type="button" class="pick-btn" onclick="setPick(27)">27</button>
+                <button type="button" class="pick-btn" onclick="setPick(871)">871</button>
+                <button type="button" class="pick-btn" onclick="setPick(6171)">6,171</button>
+                <button type="button" class="pick-btn" onclick="setPick(77031)">77,031</button>
+                <button type="button" class="pick-btn" onclick="setPick(837799)">837,799</button>
+            </div>
+
+            <button type="submit" class="primary-button">Compute Sequence</button>
+        </form>
+
+        <div id="result" class="result-panel"></div>
+
+        <section class="workflow-panel">
+            <h2>The path the run took</h2>
+            <p>
+                The workflow the snapshot declares, drawn from its compiled graph. After a run, the
+                boxes and routes the trace records are marked. A run can follow only the routes drawn
+                here: there is no other.
+            </p>
+            <svg id="wf-diagram" role="img" aria-label="Compiled workflow WF_COLLATZ_CONJECTURE_V0"></svg>
+            <p class="workflow-foot">
+                <a href="/snapshot/behavior_logic/workload/WF_COLLATZ_CONJECTURE_V0/WF_COLLATZ_CONJECTURE_V0.projection.png"
+                   target="_blank" rel="noopener">The compiler's own projection of this workflow &rarr;</a>
+                <span id="wf-snapshot"></span>
+            </p>
+        </section>
+    </div>
+
+    <footer class="app-footer">
+        operation <code>collatz.compute</code> &rarr; TI &rarr; WF &rarr; TE &mdash; PGC Transport Standard V0
+    </footer>
+
+    <script src="/diagram/workflow_diagram.js"></script>
+    <script src="js/collatz_bridge.js"></script>
+</body>
+</html>
