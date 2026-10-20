@@ -28,7 +28,7 @@ dependencies = ["pgc-runtime>=2.0.0"]
 [project.urls]
 Homepage = "https://omnibachi.org/"
 Repository = "https://github.com/protocol-governed-computing/conformance_workloads"
-Standard = "https://doi.org/10.5281/zenodo.22150616"
+Standard = "https://doi.org/10.5281/zenodo.22150615"
 
 # Only the importable implementation ships. A sealed snapshot binds these by
 # fully qualified module path — `workloads.collatz.implementation.
