@@ -33,7 +33,7 @@ export PGC_DATA_ROOT="${PGC_DATA_ROOT:-$UMBRELLA/data/collatz_client}"
 # Static mounts (all READ-ONLY, config-driven). Three roots:
 #   /          the web client (shell + all screens)
 #   /traces    live per-run evidence from the instance data root (transient)
-#   /snapshot  live inspection of the assembled snapshot (compiled artifacts, PNGs)
+#   /snapshot  live inspection of the assembled snapshot (compiled artifacts)
 #   /diagram   the inspector's workflow diagram, which this client draws its workflow with
 # Live means never stale; a missing artifact fails soft via the adapter's friendly 404.
 export PGC_STATIC_MOUNTS="/=$CLIENT/web;/traces=$PGC_DATA_ROOT/traces;/snapshot=$PGC_SNAPSHOT_ROOT;/diagram=$PGC_INSPECTOR_ROOT/client/web/workflow/js"
